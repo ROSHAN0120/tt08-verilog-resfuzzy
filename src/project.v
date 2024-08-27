@@ -24,7 +24,7 @@ module tt_um_resfuzzy (
   // List all unused inputs to prevent warnings
   wire _unused = &{ena, 1'b0};
 
-  fuzzy_new fuzzy_new (
+  fuzzy_new ione (
     .clk(clk),
     .rst_n(rst_n),
         .rain_fall(uio_in[7:0]),     // 8-bit input for rainfall (0 to 100)
