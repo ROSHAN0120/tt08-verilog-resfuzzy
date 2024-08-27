@@ -1,4 +1,4 @@
-
+module fuzzy_new(
     input  clk,rst_n,
     input wire [7:0] rain_fall,     // 8-bit input for rainfall (0 to 100)
     input wire [7:0] soil_moisture, // 8-bit input for soil moisture (0 to 100)
