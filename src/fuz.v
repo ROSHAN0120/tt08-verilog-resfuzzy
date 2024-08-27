@@ -60,13 +60,13 @@ module fuzzy_new(
         
             // Fuzzy rules:
             // Rule 1: IF rainfall is high AND soil moisture is high THEN risk is high
-             rule1_firing_strength = rain_high & soil_moisture_high;
+             rule1_firing_strength <= rain_high & soil_moisture_high;
         
             // Rule 2: IF rainfall is medium AND soil moisture is medium THEN risk is medium
-             rule2_firing_strength = rain_medium & soil_moisture_medium;
+             rule2_firing_strength <= rain_medium & soil_moisture_medium;
         
             // Rule 3: IF rainfall is low AND soil moisture is low THEN risk is low
-             rule3_firing_strength = rain_low & soil_moisture_low;
+             rule3_firing_strength <= rain_low & soil_moisture_low;
         
             // Defuzzification (Weighted Average)
              numerator <= rule1_firing_strength * 255 + rule2_firing_strength * 170 + rule3_firing_strength * 85;
