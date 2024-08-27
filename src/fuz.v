@@ -46,17 +46,17 @@ module fuzzy_new(
     // Rainfall fuzzy sets
     always @(posedge clk) begin
         if (!rst_n)begin
-             risk = 0;       
+             risk <= 0;       
         end
         else begin
-             rain_low = triangular_membership(rain_fall, 0, 20, 40);
-             rain_medium = triangular_membership(rain_fall, 30, 50, 70);
-             rain_high = triangular_membership(rain_fall, 60, 80, 100);
+             rain_low <= triangular_membership(rain_fall, 0, 20, 40);
+             rain_medium <= triangular_membership(rain_fall, 30, 50, 70);
+             rain_high <= triangular_membership(rain_fall, 60, 80, 100);
         
             // Soil moisture fuzzy sets
-             soil_moisture_low = triangular_membership(soil_moisture, 0, 20, 40);
-             soil_moisture_medium = triangular_membership(soil_moisture, 30, 50, 70);
-             soil_moisture_high = triangular_membership(soil_moisture, 60, 80, 100);
+             soil_moisture_low <= triangular_membership(soil_moisture, 0, 20, 40);
+             soil_moisture_medium <= triangular_membership(soil_moisture, 30, 50, 70);
+             soil_moisture_high <= triangular_membership(soil_moisture, 60, 80, 100);
         
             // Fuzzy rules:
             // Rule 1: IF rainfall is high AND soil moisture is high THEN risk is high
@@ -69,18 +69,18 @@ module fuzzy_new(
              rule3_firing_strength = rain_low & soil_moisture_low;
         
             // Defuzzification (Weighted Average)
-             numerator = rule1_firing_strength * 255 + rule2_firing_strength * 170 + rule3_firing_strength * 85;
-             denominator = rule1_firing_strength + rule2_firing_strength + rule3_firing_strength;
+             numerator <= rule1_firing_strength * 255 + rule2_firing_strength * 170 + rule3_firing_strength * 85;
+             denominator <= rule1_firing_strength + rule2_firing_strength + rule3_firing_strength;
         end
     // Calculate risk (avoid division by zero)
 //    always @(*)
     
         if (denominator != 0)begin
-            save = numerator / denominator;
-            risk = save[7:0];
+            save <= numerator / denominator;
+            risk <= save[7:0];
         end
         else
-            risk = 0; // Default value if no rules fire
+            risk <= 0; // Default value if no rules fire
     end
 
 endmodule
