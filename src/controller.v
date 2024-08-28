@@ -24,12 +24,12 @@ module controller(
             
             case(ss)
                 1'b0:begin
-                     r1 = data_bus ;  
+                     r1 <= data_bus ;  
                      count = count+4'b0001;
 //                     $display("%0t\t r1 value :%d\t%d", $time,r1,count);
                      end
                 1'b1:begin
-                     r2 = data_bus;
+                     r2 <= data_bus;
                      count = count+4'b0001;
 //                      $display("%0t\t r2 value :%d\t%d", $time,r2,count);
                      end
