@@ -45,14 +45,14 @@ pinout:
   uo[7]: "risk value"
 
   # Bidirectional pins
-  uio[0]: "Input data from the sensors"
-  uio[1]: "Input data from the sensors"
-  uio[2]: "Input data from the sensors"
-  uio[3]: "Input data from the sensors"
-  uio[4]: "Input data from the sensors"
-  uio[5]: "Input data from the sensors"
-  uio[6]: "Input data from the sensors"
-  uio[7]: "Input data from the sensors"
+  uio[0]: "sensor select"
+  uio[1]: "sensor select"
+  uio[2]: ""
+  uio[3]: ""
+  uio[4]: ""
+  uio[5]: ""
+  uio[6]: ""
+  uio[7]: ""
 
 # Do not change!
 yaml_version: 6
