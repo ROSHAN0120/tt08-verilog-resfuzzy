@@ -86,12 +86,12 @@ module fuzzy(
 //    always @(*)
     
         if (denominator != 0)begin
-            save = numerator / denominator;
-            risk = save;
+            save <= numerator / denominator;
+            risk <= save;
             
         end
         else
-            risk = 0; // Default value if no rules fire
+            risk <= 0; // Default value if no rules fire
     end
 
 endmodule
