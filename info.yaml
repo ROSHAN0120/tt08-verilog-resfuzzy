@@ -19,6 +19,8 @@ project:
   source_files:
     - "project.v"
     - "fuz.v"
+    - "controller.v"
+    - "top.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
