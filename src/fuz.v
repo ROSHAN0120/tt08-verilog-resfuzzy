@@ -1,10 +1,12 @@
 module fuzzy(
     input  clk,rst_n,ef,
-    input wire [7:0] rain,     // 8-bit input for rainfall (0 to 100)
-    input wire [7:0] soil, // 8-bit input for soil moisture (0 to 100)
+    input wire [7:0] raw,     // 8-bit input for rainfall (0 to 100)
+    input wire [7:0] sow, // 8-bit input for soil moisture (0 to 100)
     output reg [7:0] risk           // 8-bit output risk (0 to 255)
 );
-
+    reg [7:0] rain;
+    reg [7:0] soil;
+    reg enable ;
     // Membership functions for rainfall
     reg [7:0] rain_low;
     reg [7:0] rain_medium;
@@ -44,11 +46,17 @@ module fuzzy(
     endfunction
 
     // Rainfall fuzzy sets
-    always @(ef) begin
+    always @(*) begin
+        rain<= raw;
+        soil<= sow;
+        enable <= ef;
+        $display("rain: %d",rain);
+        $display("soil: %d",soil);
+        $display("enable: %d",enable);
         if (!rst_n)begin
              risk <= 0;       
         end
-        else begin
+        else if (ef) begin
              rain_low <= triangular_membership(rain, 0, 20, 40);
              rain_medium <= triangular_membership(rain, 30, 50, 70);
              rain_high <= triangular_membership(rain, 60, 80, 100);
@@ -71,17 +79,20 @@ module fuzzy(
             // Defuzzification (Weighted Average)
              numerator <= rule1_firing_strength * 255 + rule2_firing_strength * 170 + rule3_firing_strength * 85;
              denominator <= rule1_firing_strength + rule2_firing_strength + rule3_firing_strength;
-
+        end else begin
+            risk <= 0;        
         end
     // Calculate risk (avoid division by zero)
 //    always @(*)
     
         if (denominator != 0)begin
             save = numerator / denominator;
-            risk = save[7:0];
+            risk = save;
+            
         end
         else
             risk = 0; // Default value if no rules fire
     end
 
 endmodule
+
