@@ -18,19 +18,20 @@ module tt_um_resfuzzy (
 
   // All output pins must be assigned. If not used, assign to 0.
   // assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
+    assign uio_in[7:1]=7'b0000000;
   assign uio_out = 0;
   assign uio_oe  = 0;
 
   // List all unused inputs to prevent warnings
   wire _unused = &{ena, 1'b0};
 
-  fuzzy_new ione (
-    .clk(clk),
-    .rst_n(rst_n),
-        .rain_fall(uio_in[7:0]),     // 8-bit input for rainfall (0 to 100)
-        .soil_moisture(ui_in[7:0]), // 8-bit input for soil moisture (0 to 100)
-        .risk(uo_out[7:0])
-             );      
+  top top(   
+      .clk(clk),
+      .rst_n(rst_n),
+      .ss(uio_in[0]),
+      .data_bus(ui_in),     
+      .risk(uo_out)          
+    );  
 
 
 endmodule
