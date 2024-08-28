@@ -46,7 +46,7 @@ module fuzzy(
     endfunction
 
     // Rainfall fuzzy sets
-    always @(*) begin
+    always @(posedge clk) begin
         rain<= raw;
         soil<= sow;
         enable <= ef;
