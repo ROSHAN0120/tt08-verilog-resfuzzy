@@ -1,3 +1,6 @@
+`include "./fuz.v"
+`include "./controller.v"
+
 module top(   
     input  clk,rst_n,ss,
     input wire [7:0] data_bus,     
