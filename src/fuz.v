@@ -19,7 +19,7 @@ module fuzzy(
     
     wire [15:0] numerator;
     wire [7:0] denominator;
-    reg [15:0]save; 
+
 
 
     function [7:0] triangular_membership;
@@ -60,15 +60,8 @@ module fuzzy(
              risk <= 8'b0;       
         end
         else if (ef) begin
-             if (denominator != 0)begin
-                save <= numerator / denominator;
-                risk <= save;
-            end 
-         end    
-        else begin
-            risk <= 8'b0; 
-        end
-     end
-
+            risk<= (denominator != 0) ? numerator / denominator :8'b0;
+        end 
+     end    
 endmodule
 
