@@ -10,7 +10,7 @@ module controller(
     
     reg [7:0]r1;
     reg [7:0]r2;
-    reg [3:0]count;
+    reg [1:0]count;
     reg efr;
  
 
@@ -18,24 +18,24 @@ module controller(
         if(!rst_n)begin
             r1<=0;
             r2<=0;
-            count =4'b0000;
+            count =2'b00;
         end
         else begin
             
             case(ss)
                 1'b0:begin
                      r1 <= data_bus ;  
-                     count = count+4'b0001;
+                     count = count+2'b01;
 
                      end
                 1'b1:begin
                      r2 <= data_bus;
-                     count = count+4'b0001;
+                     count = count+2'b01;
 
                      end
             endcase
             
-            if(count == 4'b0010)begin
+            if(count == 2'b10)begin
                 if (r1 !=0 && r2!=0)begin
                     efr=1;
                     s1=r1;
