@@ -31,9 +31,9 @@ module fuzzy(
             if (value <= a)
                 triangular_membership = 0;
             else if (value <= b)
-                triangular_membership = (value - a) * 255 / (b - a);  
+                triangular_membership = (((value - a)<<8)-1)/ (b - a);  
             else if (value <= c)
-                triangular_membership = (c - value) * 255 / (c - b);
+                triangular_membership = (((c - value)<<8)-1) / (c - b);
             else
                 triangular_membership = 0;
         end
