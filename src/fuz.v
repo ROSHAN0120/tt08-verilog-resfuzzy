@@ -51,7 +51,7 @@ module fuzzy(
         assign  rule2_firing_strength = rain_medium & soil_moisture_medium;
         assign  rule3_firing_strength = rain_low & soil_moisture_low;
         
-    assign numerator = ((rule1_firing_strength <<8)-1) + rule2_firing_strength * 170 + rule3_firing_strength * 85;
+    assign numerator = rule1_firing_strength*255 + rule2_firing_strength * 170 + rule3_firing_strength * 85;
         assign denominator = rule1_firing_strength + rule2_firing_strength + rule3_firing_strength;
 
     always @(posedge clk ) begin
