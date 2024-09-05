@@ -64,4 +64,3 @@ module fuzzy(
         end 
      end    
 endmodule
-
