@@ -31,9 +31,9 @@ module fuzzy(
             if (value <= a)
                 triangular_membership = 0;
             else if (value <= b)
-                triangular_membership = (((value - a)<<8)-1)/ (b - a);  
+                triangular_membership = (((value - a)<<8)-(value - a))/ (b - a);  
             else if (value <= c)
-                triangular_membership = (((c - value)<<8)-1) / (c - b);
+                triangular_membership = (((c - value)<<8)-(c - value)) / (c - b);
             else
                 triangular_membership = 0;
         end
@@ -51,7 +51,7 @@ module fuzzy(
         assign  rule2_firing_strength = rain_medium & soil_moisture_medium;
         assign  rule3_firing_strength = rain_low & soil_moisture_low;
         
-        assign numerator = rule1_firing_strength *255 + rule2_firing_strength * 170 + rule3_firing_strength * 85;
+        assign numerator = ((rule1_firing_strength <<8)-(rule1_firing_strength)) + rule2_firing_strength * 170 + rule3_firing_strength * 85;
         assign denominator = rule1_firing_strength + rule2_firing_strength + rule3_firing_strength;
 
     always @(posedge clk ) begin
