@@ -9,12 +9,14 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-fuz Explain how your project works
+The project implements a fuzzy logic system that estimates "risk" based on rainfall and soil moisture. It uses triangular membership functions to evaluate these inputs as low, medium, or high. Three fuzzy rules fire depending on the overlap between rainfall and soil moisture conditions. The system calculates the weighted average of the rule strengths to produce the risk value. If no rules fire (i.e., denominator is zero), the output risk is zero. The module updates the risk value on the clock edge when ef is enabled.
 
 ## How to test
 
-anyway Explain how to use your project
+To test the fuzzy logic system,simulate different conditions by changing the input data_bus (rainfall/soil moisture data).Test the values of 80, 10, and 50 with ss (sensor select) toggling between 0 and 1 to activate the fuzzy logic. The expected output is a different risk value based on these input scenarios (FF,55,AA) (High,Low,Medium) respectively.
 
 ## External hardware
 
-adc List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+8 switches connected to the input ui[7:0] pins 
+1 switch to the uio[0] pin
+8 bit LED is needed to show the output values uo[7:0]
